@@ -1,9 +1,9 @@
-using Microsoft.EntityFrameworkCore;
+/* using Microsoft.EntityFrameworkCore;
 using Account.Models;
 
 namespace Users.Data
 {
-    public class AppDbContexts: DbContext
+    public class AppDbContexts : DbContext
     {
         public AppDbContexts(DbContextOptions<AppDbContexts> options) : base(options) { }
         
@@ -14,5 +14,21 @@ namespace Users.Data
             base.OnModelCreating(modelBuilder);
             // Configurações adicionais
         }
+    }
+}
+*/
+using Microsoft.EntityFrameworkCore;
+using Account.Models;
+
+namespace Users.Data
+{
+    public class AppDbContexts : DbContext
+    {
+        public AppDbContexts(DbContextOptions<AppDbContexts> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<User> Users { get; set; }
     }
 }

@@ -5,7 +5,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Adicionar serviços ao container
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AppDbContext>(options =>
+
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
+builder.Services.AddDbContext<AppDbContexts>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Adicionar outros serviços como Swagger, etc.
