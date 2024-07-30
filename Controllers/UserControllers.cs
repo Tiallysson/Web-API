@@ -23,6 +23,8 @@ namespace Controllers
                 return BadRequest("Usuario não pode ser nulo!");
             }
 
+            user.Id = 0;
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
