@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Users.Data; 
+using Users.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +18,10 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddDbContext<AppDbContexts>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 39)));
+});
 
 // Adicionar outros serviços como Swagger, etc.
 builder.Services.AddEndpointsApiExplorer();
